@@ -19,10 +19,11 @@ Fuente: [DS Base seisvente](https://www.figma.com/design/aZ1CwbpxxWbsPSuBXBal19?
 
 - El borde de inputs/selects usa `--control-border`, alias de gris neutral DS. El divisor claro de Figma no alcanza 3:1 sobre blanco para identificar un control.
 - Adjudicada conserva fondo/borde verde DS y usa texto primario oscuro. Esto asegura contraste del texto sin depender del color para comunicar el estado.
+- Desierta usa el mismo naranja rojizo en texto y borde: `--status-desierta-foreground` (`#b8441a`) sobre el fondo de advertencia DS (`#fcf6f4`). El tono original del borde (`#c74e1e`) da 4.33:1 al usarlo como texto sobre ese fondo; el ajuste local alcanza 5.06:1. El token de advertencia general se conserva.
 - El foco usa Brand/700 y contorno visible. Hover, disabled y foco se definen por separado.
 - Los chips conservan centrado vertical y gap XS; frente a «Limpiar filtros» se distribuyen con `justify-content: space-between`. A 360 px pueden envolver sin perder acciones.
 - La geometría propia de la vista —sidebar, controles, tarjetas, modal— queda en tokens de aplicación. Los breakpoints y proporciones de columna son reglas de layout.
-- El rango de fechas pasa de un campo ilustrativo a dos inputs de fecha reales. Los encabezados pasan a botones de orden; los filtros móviles se implementan como diálogo inferior.
+- El rango de fechas pasa de un campo ilustrativo a dos inputs de fecha reales. Las etiquetas «Publicación desde» y «Publicación hasta» son visibles. Cada fecha tiene una base de 180 px y el grupo ocupa al menos 368 px; los filtros envuelven a otra fila según el espacio disponible, incluida la sidebar expandida o compacta. Se usa el calendario nativo sin superponer un segundo icono. Los encabezados pasan a botones de orden; los filtros móviles se implementan como diálogo inferior.
 - Todos los SVG proceden de exportaciones de las capas originales de la entrega. Se alojan en `dist/assets`, sin URLs temporales ni redibujado.
 
 Estas adaptaciones se documentan como candidatos para contrastar con el DS. El archivo fuente del DS no fue modificado.
