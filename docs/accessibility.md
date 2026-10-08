@@ -19,7 +19,7 @@ Pasaron las pruebas de reglas, estructura y contraste y la comprobación de sint
 
 ## Recorrido manual
 
-1. Abrir a 1440 px y a **360 px**. Revisar también 1280 y 1366 px con sidebar expandida/compacta: los campos «Publicación desde» y «Publicación hasta» deben conservar texto y controles completos al envolver a otra fila. Confirmar tarjetas en móvil, ausencia de desplazamiento horizontal y textos completos. Revisar también zoom 200 % y viewport 320 px.
+1. Abrir a 1440 px y a **360 px**. Revisar también 1280 y 1366 px con sidebar expandida/compacta: los campos «Publicación desde» y «Publicación hasta» deben conservar texto y controles completos en una sola fila. Revisar también el borde de escritorio de 768 px. Confirmar tarjetas en móvil, ausencia de desplazamiento horizontal y textos completos. Revisar también zoom 200 % y viewport 320 px.
 2. Navegar con Tab/Shift+Tab desde el enlace de salto: búsqueda → filtros/orden → chips → listado → paginación. Confirmar foco visible y orden lógico.
 3. En móvil, abrir «Filtros». Verificar que el panel nace abajo, Tab permanece dentro, Escape cancela y el foco vuelve al botón. Cambiar una región y aplicar; volver a abrir y cancelar otra selección.
 4. Expandir y contraer varias tarjetas. Confirmar el anuncio del estado y que los datos aparecen en lectura.

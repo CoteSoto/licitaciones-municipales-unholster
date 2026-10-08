@@ -1,26 +1,87 @@
 /* Source: Figma DS and local application extensions. Values live here only. */
-@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url('./assets/hanken-400.ttf') format('truetype')}
-@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url('./assets/hanken-500.ttf') format('truetype')}
-@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url('./assets/hanken-600.ttf') format('truetype')}
-:root{
- --background-color-background-primary:#fff;--background-color-background-secondary:#fafafa;
- --text-color-text-primary:#141414;--text-color-text-secondary:#4f4f4f;--border-color-border-primary:#e7e7e7;
- --brand-700:#2150e0;--brand-50:#eff6ff;
- --status-publicada-background:#f2f3fa;--status-publicada-foreground:#00139b;
- --status-neutral-background:#f8f8f8;--status-neutral-border:#787878;
- --status-adjudicada-background:#f5f9f3;--status-adjudicada-foreground:#368516;
- --status-warning-background:#fcf6f4;--status-warning-foreground:#c74e1e;
- --status-desierta-foreground:#b8441a;
- --status-error-background:#faf4f4;--status-error-foreground:#991b1b;
- --size-2xs:4px;--size-xs:8px;--size-s:16px;--size-m:24px;--size-l:32px;--size-2xl:48px;--size-4xl:64px;
- --borders-s:4px;--borders-m:6px;--borders-l:8px;
- --font-family:'Hanken Grotesk',Arial,sans-serif;--font-size-body2:14px;--font-size-body1:16px;--font-size-h1-mobile:24px;--font-size-h3:26px;--font-size-kpi:32px;
- --line-body:24px;--line-heading:32px;--line-kpi:40px;--weight-regular:400;--weight-medium:500;--weight-semibold:600;
- /* Application geometry and semantic accessibility extensions. */
- --control-border:var(--status-neutral-border);--focus-color:var(--brand-700);--control-height:44px;
- --filter-field-min:180px;--search-field-min:240px;--date-control-min:180px;--date-range-min:calc(2 * var(--date-control-min) + var(--size-xs));
- --sidebar-width:224px;--sidebar-compact:72px;--metric-height:136px;--row-height:80px;
- --logo-width:27px;--logo-height:28px;--icon-sm:16px;--icon-md:20px;--icon-lg:24px;--icon-control:18px;
- --stroke-width:1px;--focus-width:3px;--focus-offset:3px;--disabled-opacity:.45;
- --overlay:rgba(20,20,20,.45);--sheet-radius:16px;--content-max:1800px;
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/hanken-400.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/hanken-500.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/hanken-600.ttf') format('truetype');
+}
+:root {
+  --background-color-background-primary: #fff;
+  --background-color-background-secondary: #fafafa;
+  --text-color-text-primary: #141414;
+  --text-color-text-secondary: #4f4f4f;
+  --border-color-border-primary: #e7e7e7;
+  --brand-700:#2150e0;
+  --brand-50:#eff6ff;
+  --status-publicada-background: #f2f3fa;
+  --status-publicada-foreground: #00139b;
+  --status-neutral-background: #f8f8f8;
+  --status-neutral-border: #787878;
+  --status-adjudicada-background: #f5f9f3;
+  --status-adjudicada-foreground: #368516;
+  --status-warning-background: #fcf6f4;
+  --status-warning-foreground: #c74e1e;
+  --status-desierta-foreground: #b8441a;
+  --status-error-background: #faf4f4;
+  --status-error-foreground: #991b1b;
+  --size-2xs:4px;
+  --size-xs: 8px;
+  --size-s: 16px;
+  --size-m: 24px;
+  --size-l: 32px;
+  --size-2xl:48px;
+  --size-4xl:64px;
+  --borders-s: 4px;
+  --borders-m: 6px;
+  --borders-l: 8px;
+  --font-family: 'Hanken Grotesk',Arial,sans-serif;
+  --font-size-body2:14px;
+  --font-size-body1:16px;
+  --font-size-h1-mobile:24px;
+  --font-size-h3:26px;
+  --font-size-kpi: 32px;
+  --line-body: 24px;
+  --line-heading: 32px;
+  --line-kpi: 40px;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  /* Application geometry and semantic accessibility extensions. */
+  --control-border: var(--status-neutral-border);
+  --focus-color: var(--brand-700);
+  --control-height: 44px;
+  --date-control-width: 144px;
+  --date-range-width: calc(2 * var(--date-control-width) + var(--size-xs));
+  --sidebar-width: 224px;
+  --sidebar-compact: 72px;
+  --metric-height: 136px;
+  --row-height: 80px;
+  --logo-width: 27px;
+  --logo-height: 28px;
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --icon-lg: 24px;
+  --icon-control: 18px;
+  --stroke-width: 1px;
+  --focus-width: 3px;
+  --focus-offset: 3px;
+  --disabled-opacity: .45;
+  --overlay: rgba(20,20,20,.45);
+  --sheet-radius: 16px;
+  --content-max: 1800px;
 }

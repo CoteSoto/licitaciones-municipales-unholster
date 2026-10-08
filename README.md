@@ -4,7 +4,7 @@ Vista de consulta para que un analista encuentre y monitoree licitaciones munici
 
 ## Enlaces de la entrega
 
-- [Vista en GitHub Pages](https://cotesoto.github.io/licitaciones-municipales-unholster/). Dirección de publicación prevista; requiere activar Pages en el repositorio y completar el primer despliegue.
+- [Vista en GitHub Pages](https://cotesoto.github.io/licitaciones-municipales-unholster/). Vista publicada; se actualiza automáticamente al guardar cambios en `main`.
 - [Propuesta de escritorio](https://www.figma.com/design/cwY0sXUDRVNIPXU4piUcUE?node-id=16-24).
 - [Propuesta móvil de 360 px](https://www.figma.com/design/cwY0sXUDRVNIPXU4piUcUE?node-id=16-25).
 - [Roadmap del DS, etapa 1](https://www.figma.com/design/cwY0sXUDRVNIPXU4piUcUE?node-id=7-17).
@@ -27,6 +27,20 @@ npm run build
 ```
 
 `build` verifica sintaxis, assets y referencias locales. La carpeta `dist/` ya contiene la aplicación estática; no necesita compilación. Puede alojarse en un proveedor estático con directorio de publicación **dist**. No abrir `index.html` mediante `file://`: los módulos JavaScript necesitan un servidor HTTP.
+
+## Cómo modificar la vista
+
+La interfaz usa **HTML, CSS y JavaScript**. Su HTML está en [dist/index.html](dist/index.html); la carpeta `dist` contiene los archivos que publica GitHub Pages. `package.json` configura los comandos del proyecto y no define la pantalla.
+
+| Quiero modificar… | Archivo |
+| --- | --- |
+| Título, descripción, etiquetas y textos fijos | [dist/index.html](dist/index.html) |
+| Colores, tamaños, espacios y radios | [dist/tokens.css](dist/tokens.css) |
+| Distribución y comportamiento responsive | [dist/styles.css](dist/styles.css) |
+| Textos de indicadores, encabezados, tabla y tarjetas generadas | [dist/app.js](dist/app.js) |
+| Datos ficticios de las licitaciones | [dist/data.js](dist/data.js) |
+
+La [guía de edición con ejemplos](docs/editar-la-vista.md) explica qué buscar, qué conservar y cómo guardar un cambio desde GitHub para que Pages lo publique. El HTML y el CSS están organizados por bloques legibles.
 
 ## Cómo revisar los estados
 
