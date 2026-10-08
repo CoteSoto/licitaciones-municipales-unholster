@@ -4,7 +4,7 @@ Vista de consulta para que un analista encuentre y monitoree licitaciones munici
 
 ## Enlaces de la entrega
 
-- [Vista alojada](https://licitaciones-municipales-unholster.skava-5226.chatgpt.site). Acceso privado de revisión; el equipo externo requiere una publicación o acceso habilitados antes de recibir este enlace.
+- [Vista en GitHub Pages](https://cotesoto.github.io/licitaciones-municipales-unholster/). Dirección de publicación prevista; requiere activar Pages en el repositorio y completar el primer despliegue.
 - [Propuesta de escritorio](https://www.figma.com/design/cwY0sXUDRVNIPXU4piUcUE?node-id=16-24).
 - [Propuesta móvil de 360 px](https://www.figma.com/design/cwY0sXUDRVNIPXU4piUcUE?node-id=16-25).
 - [Roadmap del DS, etapa 1](https://www.figma.com/design/cwY0sXUDRVNIPXU4piUcUE?node-id=7-17).
@@ -123,10 +123,21 @@ No se ejecutó en esta sesión una auditoría de navegador ni de lector de panta
 
 Se utilizó **ChatGPT/Codex** para apoyar la definición de reglas, contrastar el alcance, traducir la propuesta de Figma a código, generar fixtures adicionales, redactar documentación y preparar pruebas. El conector de Figma aportó contexto de diseño, variables y exportaciones de assets; **Sites** se utilizó para alojar la vista de revisión.
 
-Las decisiones se iteraron con el criterio de la persona candidata. La automatización no reemplaza la revisión final del diseño ni la validación manual de accesibilidad: sus límites están indicados arriba. El código de referencia obtenido de Figma se adaptó a HTML/CSS/JS y a controles semánticos; no se usó como una imagen de la interfaz.
+Las decisiones se iteraron con el criterio de la persona candidata. La automatización no reemplaza la revisión final del diseño ni la validación manual de accesibilidad: sus límites están indicados arriba. El código de referencia obtenido de Figma se adaptó a HTML/CSS/JS y a controles semánticos; no se usó como una imagen de la interfaz. GitHub Pages es el destino de alojamiento de la entrega.
 
 ## Entrega en GitHub
 
 El repositorio puede mantenerse privado, dando acceso al equipo evaluador. Al configurarlo, incluir el proyecto completo, `README.md` y la carpeta `dist/`; no subir credenciales, `.env` ni `node_modules`.
 
-La carpeta `.github/workflows/` ejecuta las pruebas y la verificación de build en push/PR. Para publicar con otro proveedor estático, usar `dist/` como directorio de salida. La URL de revisión privada debe sustituirse o habilitarse para el equipo antes de enviar la entrega.
+La carpeta `.github/workflows/` ejecuta las pruebas y la verificación de build en push/PR. El workflow `pages.yml` publica exclusivamente `dist/` en GitHub Pages después de aprobar ambas verificaciones; se ejecuta con cada push a `main` o manualmente desde Actions.
+
+### Activación inicial de GitHub Pages
+
+1. En el repositorio, abrir **Settings → Pages**.
+2. En **Build and deployment → Source**, seleccionar **GitHub Actions**.
+3. En **Actions → Publicar en GitHub Pages**, ejecutar **Run workflow** sobre `main`. Si el primer intento ocurrió antes de activar Pages, usar **Re-run failed jobs**.
+4. Esperar que el trabajo `deploy` finalice correctamente y abrir la dirección mostrada por el entorno `github-pages`.
+
+GitHub Pages admite repositorios privados con GitHub Pro, Team o Enterprise; en GitHub Free requiere un repositorio público. [Disponibilidad y configuración oficial](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages). La visibilidad del código y la del sitio son independientes: antes de cambiar la visibilidad del repositorio, decidir cómo se compartirá con el equipo evaluador.
+
+Las rutas de scripts, estilos y assets son relativas para funcionar bajo `/licitaciones-municipales-unholster/`. Los parámetros de revisión siguen funcionando, por ejemplo `https://cotesoto.github.io/licitaciones-municipales-unholster/?estado=error`.
