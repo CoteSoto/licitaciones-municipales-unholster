@@ -1,29 +1,40 @@
-# Equivalencias Figma → código
+# Design System
 
-Fuente: [DS Base seisvente](https://www.figma.com/design/aZ1CwbpxxWbsPSuBXBal19?node-id=1623-855) y [piezas locales de la entrega](https://www.figma.com/design/cwY0sXUDRVNIPXU4piUcUE?node-id=17-28). No había un paquete de componentes consumible; se implementaron adaptaciones locales. Los valores están centralizados en `dist/tokens.css`; `styles.css` los consume.
+La interfaz utiliza como referencia el [DS Base seisvente](https://www.figma.com/design/aZ1CwbpxxWbsPSuBXBal19?node-id=1623-855) y los [componentes de la propuesta](https://www.figma.com/design/cwY0sXUDRVNIPXU4piUcUE?node-id=17-28). La aplicación implementa componentes locales en HTML y CSS; el DS de referencia no dispone de un paquete de código consumible.
 
-| Figma | Código | Criterio |
+## Fundamentos
+
+Los valores de diseño están centralizados en `dist/tokens.css`. `dist/styles.css` consume estos tokens para definir componentes y distribución.
+
+| Referencia | Token de código | Uso |
 | --- | --- | --- |
 | Background/Color-Background-Primary | `--background-color-background-primary` | Fondo principal |
-| Text/Color-Text-Primary y Secondary | `--text-color-text-primary`, `--text-color-text-secondary` | Jerarquía y texto legible |
+| Text/Color-Text-Primary y Secondary | `--text-color-text-primary`, `--text-color-text-secondary` | Jerarquía de texto |
 | Border/Color-Border-Primary | `--border-color-border-primary` | Divisores y contenedores |
-| Size/2XS, XS, S, M, L | `--size-2xs`, `--size-xs`, `--size-s`, `--size-m`, `--size-l` | Espaciado 4, 8, 16, 24, 32 |
-| Borders/S, M, L | `--borders-s`, `--borders-m`, `--borders-l` | Radios 4, 6, 8 |
-| Hanken Grotesk y estilos de texto | `--font-family`, variables de tamaño, peso e interlineado | Fuentes locales 400, 500, 600 |
-| Button / Licitaciones | `.btn`, `.primary`, `.ghost` | Controles nativos con altura mínima 44 |
-| Badge / Estado licitación | `.badge.publicada`, `.cerrada`, `.adjudicada`, `.desierta` | Color acompañado de etiqueta |
-| Metric / Licitaciones | `.metric` | Cuatro indicadores calculados antes de paginar |
-| Metric / Cierres próximos | `.metric.closing` | Reloj y señal de plazo; no representa un error |
+| Size/2XS, XS, S, M, L | `--size-2xs`, `--size-xs`, `--size-s`, `--size-m`, `--size-l` | Espaciados de 4, 8, 16, 24 y 32 px |
+| Borders/S, M, L | `--borders-s`, `--borders-m`, `--borders-l` | Radios de 4, 6 y 8 px |
+| Hanken Grotesk | `--font-family` y variables de texto | Fuente local en pesos 400, 500 y 600 |
 
-## Ajustes para código y accesibilidad
+Los tokens de aplicación incluyen dimensiones de navegación, controles, tarjetas y diálogos. Los breakpoints y las proporciones de las columnas se definen en CSS.
 
-- El borde de inputs/selects usa `--control-border`, alias de gris neutral DS. El divisor claro de Figma no alcanza 3:1 sobre blanco para identificar un control.
-- Adjudicada conserva fondo/borde verde DS y usa texto primario oscuro. Esto asegura contraste del texto sin depender del color para comunicar el estado.
-- Desierta usa el mismo naranja rojizo en texto y borde: `--status-desierta-foreground` (`#b8441a`) sobre el fondo de advertencia DS (`#fcf6f4`). El tono original del borde (`#c74e1e`) da 4.33:1 al usarlo como texto sobre ese fondo; el ajuste local alcanza 5.06:1. El token de advertencia general se conserva.
-- El foco usa Brand/700 y contorno visible. Hover, disabled y foco se definen por separado.
-- Los chips conservan centrado vertical y gap XS; frente a «Limpiar filtros» se distribuyen con `justify-content: space-between`. A 360 px pueden envolver sin perder acciones.
-- La geometría propia de la vista —sidebar, controles, tarjetas, modal— queda en tokens de aplicación. Los breakpoints y proporciones de columna son reglas de layout.
-- El rango de fechas pasa de un campo ilustrativo a dos inputs de fecha reales. Las etiquetas «Publicación desde» y «Publicación hasta» son visibles. Cada fecha dispone de 144 px; el grupo reserva 296 px. La barra usa cuatro columnas en una sola fila en escritorio: búsqueda, región, estado y rango. Las tres primeras columnas se adaptan al espacio restante, con separación XS. Los labels permanecen dentro de su columna. En móvil los filtros pasan al panel inferior. Se usa el calendario nativo sin superponer un segundo icono. Los encabezados pasan a botones de orden; los filtros móviles se implementan como diálogo inferior.
-- Todos los SVG proceden de exportaciones de las capas originales de la entrega. Se alojan en `dist/assets`, sin URLs temporales ni redibujado.
+## Componentes
 
-Estas adaptaciones se documentan como candidatos para contrastar con el DS. El archivo fuente del DS no fue modificado.
+| Componente | Código | Criterio |
+| --- | --- | --- |
+| Botón | `.btn`, `.primary`, `.ghost` | Control nativo con altura mínima de 44 px y estados de foco, hover y deshabilitado |
+| Estado de licitación | `.badge` | Etiqueta de texto acompañada de color |
+| Indicador | `.metric` | Valor calculado sobre todos los resultados filtrados |
+| Cierres próximos | `.metric.closing` | Reloj y señal de plazo |
+| Filtro activo | `.chip` | Texto centrado, separación XS y acción para quitar el filtro |
+| Barra de filtros | `.filters` | Una fila en escritorio; búsqueda, región, estado y rango de publicación |
+| Filtros móviles | `.bottom-sheet` | Panel inferior modal con aplicación y cancelación del borrador |
+
+## Color y accesibilidad
+
+- Publicada: azul; Cerrada: gris; Adjudicada: verde; Desierta: naranja rojizo. Cada estado incluye su nombre.
+- Desierta utiliza `--status-desierta-foreground` para texto y borde sobre el fondo de advertencia; su contraste de texto es 5.06:1.
+- Adjudicada utiliza fondo y borde verdes con texto primario oscuro para mantener la legibilidad.
+- Los bordes de los controles utilizan `--control-border`, alias del gris neutral. El foco utiliza Brand/700 y un contorno visible.
+- Las etiquetas de los campos están asociadas a sus controles. Las fechas utilizan inputs nativos y etiquetas visibles.
+
+Los ajustes de contraste son extensiones locales documentadas en código. El archivo fuente del DS permanece como referencia. Los SVG de la interfaz se exportan desde las capas de la propuesta y se alojan en `dist/assets/`.

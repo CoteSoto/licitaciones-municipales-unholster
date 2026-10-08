@@ -217,7 +217,7 @@ main {
 .mobile-urgent {
   display: none;
 }
-/* Filtros: una fila en escritorio; las fechas conservan su ancho. */
+/* Barra de filtros de escritorio. */
 .filters {
   display: grid;
   grid-template-columns: minmax(0,1.4fr) minmax(0,1fr) minmax(0,.8fr) var(--date-range-width);

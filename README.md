@@ -28,20 +28,6 @@ npm run build
 
 `build` verifica sintaxis, assets y referencias locales. La carpeta `dist/` ya contiene la aplicación estática; no necesita compilación. Puede alojarse en un proveedor estático con directorio de publicación **dist**. No abrir `index.html` mediante `file://`: los módulos JavaScript necesitan un servidor HTTP.
 
-## Cómo modificar la vista
-
-La interfaz usa **HTML, CSS y JavaScript**. Su HTML está en [dist/index.html](dist/index.html); la carpeta `dist` contiene los archivos que publica GitHub Pages. `package.json` configura los comandos del proyecto y no define la pantalla.
-
-| Quiero modificar… | Archivo |
-| --- | --- |
-| Título, descripción, etiquetas y textos fijos | [dist/index.html](dist/index.html) |
-| Colores, tamaños, espacios y radios | [dist/tokens.css](dist/tokens.css) |
-| Distribución y comportamiento responsive | [dist/styles.css](dist/styles.css) |
-| Textos de indicadores, encabezados, tabla y tarjetas generadas | [dist/app.js](dist/app.js) |
-| Datos ficticios de las licitaciones | [dist/data.js](dist/data.js) |
-
-La [guía de edición con ejemplos](docs/editar-la-vista.md) explica qué buscar, qué conservar y cómo guardar un cambio desde GitHub para que Pages lo publique. El HTML y el CSS están organizados por bloques legibles.
-
 ## Cómo revisar los estados
 
 Los parámetros funcionan tanto localmente como en la vista alojada. El estado forzado se mantiene hasta usar la acción de recuperación o volver a la vista normal; no depende de provocar un fallo real.
@@ -131,27 +117,16 @@ Los estilos consumen tokens centralizados y documentados. No existía un paquete
 
 Se implementaron etiquetas, foco visible, navegación nativa por teclado, tabla semántica, mensajes de estado y diálogos con cierre y devolución de foco. Las pruebas verifican contraste de texto ≥4.5:1 y de bordes/foco ≥3:1. **Nueve pruebas y la verificación de build aprobadas.**
 
-No se ejecutó en esta sesión una auditoría de navegador ni de lector de pantalla. El [repaso de accesibilidad](docs/accessibility.md) distingue lo comprobado en código del recorrido manual pendiente, incluida la validación visual a 360 px. No se afirma certificación WCAG.
+La auditoría visual en navegador y la validación con lector de pantalla están pendientes. El [repaso de accesibilidad](docs/accessibility.md) distingue lo comprobado en código del recorrido manual pendiente, incluida la validación visual a 360 px. No se afirma certificación WCAG.
 
 ## Uso de IA
 
-Se utilizó **ChatGPT/Codex** para apoyar la definición de reglas, contrastar el alcance, traducir la propuesta de Figma a código, generar fixtures adicionales, redactar documentación y preparar pruebas. El conector de Figma aportó contexto de diseño, variables y exportaciones de assets; **Sites** se utilizó para alojar la vista de revisión.
+Se utilizó **ChatGPT/Codex** para apoyar la definición de reglas, contrastar el alcance, traducir la propuesta de Figma a código, generar fixtures adicionales, redactar documentación y preparar pruebas. El conector de Figma aportó contexto de diseño, variables y exportaciones de assets.
 
-Las decisiones se iteraron con el criterio de la persona candidata. La automatización no reemplaza la revisión final del diseño ni la validación manual de accesibilidad: sus límites están indicados arriba. El código de referencia obtenido de Figma se adaptó a HTML/CSS/JS y a controles semánticos; no se usó como una imagen de la interfaz. GitHub Pages es el destino de alojamiento de la entrega.
+Las decisiones de alcance y diseño fueron revisadas por la persona candidata. La implementación utiliza HTML semántico, CSS y JavaScript; las limitaciones de validación se indican en el apartado de accesibilidad.
 
-## Entrega en GitHub
+## Publicación
 
-El repositorio puede mantenerse privado, dando acceso al equipo evaluador. Al configurarlo, incluir el proyecto completo, `README.md` y la carpeta `dist/`; no subir credenciales, `.env` ni `node_modules`.
+La vista está alojada en **GitHub Pages**. El workflow `pages.yml` verifica las pruebas y el build y publica exclusivamente `dist/`. Se ejecuta con cada push a `main` o manualmente desde **Actions → Publicar en GitHub Pages → Run workflow**. El workflow `checks.yml` valida también los pull requests.
 
-La carpeta `.github/workflows/` ejecuta las pruebas y la verificación de build en push/PR. El workflow `pages.yml` publica exclusivamente `dist/` en GitHub Pages después de aprobar ambas verificaciones; se ejecuta con cada push a `main` o manualmente desde Actions.
-
-### Activación inicial de GitHub Pages
-
-1. En el repositorio, abrir **Settings → Pages**.
-2. En **Build and deployment → Source**, seleccionar **GitHub Actions**.
-3. En **Actions → Publicar en GitHub Pages**, ejecutar **Run workflow** sobre `main`. Si el primer intento ocurrió antes de activar Pages, usar **Re-run failed jobs**.
-4. Esperar que el trabajo `deploy` finalice correctamente y abrir la dirección mostrada por el entorno `github-pages`.
-
-GitHub Pages admite repositorios privados con GitHub Pro, Team o Enterprise; en GitHub Free requiere un repositorio público. [Disponibilidad y configuración oficial](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages). La visibilidad del código y la del sitio son independientes: antes de cambiar la visibilidad del repositorio, decidir cómo se compartirá con el equipo evaluador.
-
-Las rutas de scripts, estilos y assets son relativas para funcionar bajo `/licitaciones-municipales-unholster/`. Los parámetros de revisión siguen funcionando, por ejemplo `https://cotesoto.github.io/licitaciones-municipales-unholster/?estado=error`.
+Las rutas de scripts, estilos y assets son relativas para funcionar bajo `/licitaciones-municipales-unholster/`. Los parámetros de revisión funcionan en la URL publicada, por ejemplo `https://cotesoto.github.io/licitaciones-municipales-unholster/?estado=error`.
